@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 
 const corsOptions = {
-    origin: 'https://caremark-pharma-git-beta-saurav1729s-projects.vercel.app/', // The URL of your React app (adjust if necessary)
+    origin: '*', // The URL of your React app (adjust if necessary)
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // Allow cookies/credentials to be included in the request
   };

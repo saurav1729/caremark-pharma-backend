@@ -2,6 +2,8 @@
 const cloudinary = require("../../config/cloudinary");
 const fs = require("fs");
 const { ApiError } = require("../error/ApiError");
+const path = require("path");
+require('dotenv').config(); 
 
 const uploadImage = async (
   filePath,
@@ -18,9 +20,15 @@ const uploadImage = async (
       width: width,
       crop: crop,
     };
+
+    const adjustedFilePath = process.env.NODE_ENV === 'production'
+    ? path.join('/tmp/uploads/images/', path.basename(filePath))
+    : filePath;
     // console.log("Options are", options);
-    const result = await cloudinary.uploader.upload(filePath, options);
-    fs.unlinkSync(filePath); 
+    const result = await cloudinary.uploader.upload(adjustedFilePath, options);
+    fs.unlink(adjustedFilePath, (err) => {
+      if (err) console.error("Error deleting file:", err);
+    });
     console.log("Image uploaded successfully:", result);
     return result;
   } catch (err) {

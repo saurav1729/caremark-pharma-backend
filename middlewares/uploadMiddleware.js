@@ -1,10 +1,19 @@
 const multer = require("multer");
 const path = require("path");
 const crypto = require('crypto');
+require('dotenv').config(); 
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../uploads/images/'));
+    const uploadPath = process.env.NODE_ENV === 'production'
+    ? '/tmp/uploads/images/'
+    : path.join(__dirname, '../uploads/images/');
+  
+  // Ensure the directory exists
+   const fs = require('fs');
+   fs.mkdirSync(uploadPath, { recursive: true });
+
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = `${Date.now()}-${crypto.randomBytes(16).toString('hex')}`;
@@ -32,7 +41,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB file size limit
+    fileSize: 7 * 1024 * 1024, // 5MB file size limit
   },
 });
 

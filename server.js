@@ -23,12 +23,24 @@ app.use(cookieParser());
 
 
 const corsOptions = {
-    origin: '*', // The URL of your React app (adjust if necessary)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // Allow cookies/credentials to be included in the request
-  };
-  
-  app.use(cors(corsOptions));
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'https://caremark-pharma-git-beta-saurav1729s-projects.vercel.app',
+      'http://localhost:5173',
+    ];
+    // Allow requests with no origin (e.g., mobile apps, curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Authorization', 'Content-Type'],
+  credentials: true, // Allow cookies/credentials if needed
+};
+app.use(cors(corsOptions));
+
 
 // app.use(cors());
 

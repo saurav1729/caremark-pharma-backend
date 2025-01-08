@@ -27,7 +27,7 @@ const corsOptions = {
     const allowedOrigins = [
       'https://caremark-pharma-git-beta-saurav1729s-projects.vercel.app',
       'http://localhost:5173',
-      'https://www.caremarkpharmaceutical.com/'
+      'https://www.caremarkpharmaceutical.com'
     ];
     // Allow requests with no origin (e.g., mobile apps, curl)
     if (!origin || allowedOrigins.includes(origin)) {

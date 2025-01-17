@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    manufacturer: { type: String, required: true },
+    category: { type: String, required: true },
     composition: { type: String, required: true },
     price: {
         original: { type: Number, required: true },
@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema({
         includes_taxes: { type: Boolean, required: true },
     },
     package_size: { type: String, required: true },
+    package_size_ml:{type:String, required:true},
     stock_quantity: { type: Number, required: true },
     description: {
         short: { type: String, required: true },

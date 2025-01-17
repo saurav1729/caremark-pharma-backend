@@ -3,8 +3,8 @@ const uploadImage = require('../util/image/uploadImage');
 const status = require('http-status');
 const Product = require('../models/product')
 
-const ProductImageHeight = 500;
-const ProductImageWidth = 500;
+// const ProductImageHeight = 500;
+// const ProductImageWidth = 500;
 
 const addProduct = async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ const addProduct = async (req, res, next) => {
     console.log('Received product data:', productData);
 
     const { 
-      name, manufacturer, composition, price, package_size, 
+      name, category, composition, price, package_size, package_size_ml,
       stock_quantity, description, usage, manufacturer_details, 
       batch_info, prescription_required, availability, storage, marketing ,details,images
     } = productData;
@@ -29,10 +29,11 @@ const addProduct = async (req, res, next) => {
 
     const productInfo = {
       name,
-      manufacturer,
+      category,
       composition,
       price: price,
       package_size,
+      package_size_ml,
       stock_quantity,
       description:description,
       usage:usage,
@@ -49,7 +50,7 @@ const addProduct = async (req, res, next) => {
     if (req.files && req.files.length > 0) {
       for (const file of req.files) {
         try {
-          const result = await uploadImage(file.path, "ProductImages", ProductImageWidth, ProductImageHeight);
+          const result = await uploadImage(file.path, "ProductImages");
           if (result && result.secure_url) {
             uploadedImages.push({ url: result.secure_url });
           }

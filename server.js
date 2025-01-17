@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const logRequestBody = require('./middlewares/requestlog');
 const jsonParseErrorHandler = require('./middlewares/jsonParseErrorHandler');
 const cookieParser = require("cookie-parser");
+const contact = require('./routes/contact');
 
 
 require('dotenv').config(); 
@@ -58,6 +59,8 @@ app.use(jsonParseErrorHandler);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes); 
+
+app.use('/api/contact',contact)
 
 dbconnect();
 

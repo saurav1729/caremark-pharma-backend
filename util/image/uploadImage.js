@@ -8,17 +8,17 @@ require('dotenv').config();
 const uploadImage = async (
   filePath,
   folder = "Product Images",
-  height = null,
-  width = null,
+  // height = null,
+  // width = null,
   crop = "limit"
 ) => {
   try {
     console.log("Uploading file:", filePath);
     const options = {
       folder: folder,
-      height: height,
-      width: width,
-      crop: crop,
+      // height: height,
+      // width: width,
+      // crop: crop,
     };
 
     const adjustedFilePath = process.env.NODE_ENV === 'production'

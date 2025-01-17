@@ -10,7 +10,7 @@ const uploadImage = async (
   folder = "Product Images",
   // height = null,
   // width = null,
-  crop = "limit"
+  // crop = "limit"
 ) => {
   try {
     console.log("Uploading file:", filePath);

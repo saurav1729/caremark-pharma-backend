@@ -21,7 +21,7 @@ const editProduct = async (req, res, next) => {
     const { 
       name, category, composition, price, package_size, package_size_ml,
       stock_quantity, description, usage, manufacturer_details, 
-      batch_info, prescription_required, availability, storage, marketing, details, images
+      batch_info, prescription_required, availability, storage, marketing, details, images, related_products
     } = productData;
 
     const updatedImages = [];
@@ -71,7 +71,8 @@ const editProduct = async (req, res, next) => {
       details,
       storage,
       marketing,
-      images: updatedImages
+      images: updatedImages,
+      related_products:related_products
     };
 
     if (updatedProductInfo.images.length === 0) {

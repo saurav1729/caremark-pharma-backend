@@ -14,7 +14,7 @@ const addProduct = async (req, res, next) => {
     const { 
       name, category, composition, price, package_size, package_size_ml,
       stock_quantity, description, usage, manufacturer_details, 
-      batch_info, prescription_required, availability, storage, marketing ,details,images
+      batch_info, prescription_required, availability, storage, marketing ,details,images, related_products
     } = productData;
      
     const uploadedImages = [];
@@ -44,7 +44,8 @@ const addProduct = async (req, res, next) => {
       details:details,
       storage,
       marketing:marketing,
-      images: []
+      images: [], 
+      related_products:related_products
     };
 
     if (req.files && req.files.length > 0) {

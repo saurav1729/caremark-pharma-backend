@@ -50,6 +50,13 @@ const productSchema = new mongoose.Schema({
           url: { type: String, required: true }
         }
       ],
+      related_products: [
+        {
+            label: { type: String, required: true },
+            value: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }  // Reference to another Product document
+        }
+    ]
+    
 });
 
 module.exports = mongoose.model('Product', productSchema);
